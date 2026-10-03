@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Pick a Stick · Random student picker</title>
+  <meta name="description" content="Draw a random student to answer the teacher's question.">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>✋</text></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Mali:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="app">
+    <main class="stage" id="stage">
+      <header class="topbar">
+        <h1>Pick a Stick</h1>
+        <button id="fullscreenBtn" class="ghost" type="button">Full screen</button>
+      </header>
+
+      <label class="question">
+        <span class="sr-only">Question for the class</span>
+        <textarea id="question" rows="2" placeholder="Type your question here…"></textarea>
+      </label>
+
+      <div class="cup-area">
+        <div class="stick empty idle" id="stick"><span id="pickedName">Add names to start</span></div>
+        <div class="cup-wrap" id="cupWrap" aria-hidden="true">
+          <div class="peeks" id="peeks"></div>
+          <div class="cup"><span class="cup-count" id="cupCount">0</span></div>
+        </div>
+      </div>
+
+      <p class="countdown" id="countdown" hidden></p>
+
+      <div class="controls">
+        <button id="drawBtn" class="draw" type="button">Draw a name</button>
+        <div class="timer">
+          <span id="timerLabel">Answer timer</span>
+          <div class="seg" role="group" aria-labelledby="timerLabel">
+            <button type="button" data-time="0" aria-pressed="true">Off</button>
+            <button type="button" data-time="30" aria-pressed="false">30s</button>
+            <button type="button" data-time="60" aria-pressed="false">60s</button>
+          </div>
+        </div>
+      </div>
+
+      <p class="status" id="status" aria-live="polite"></p>
+    </main>
+
+    <aside class="panel">
+      <section>
+        <h2><label for="names">Class list</label></h2>
+        <p class="hint">One name per line. Thai and English names both work.</p>
+        <textarea id="names" placeholder="Somchai&#10;Malee&#10;Anan&#10;…"></textarea>
+        <button id="saveBtn" class="btn" type="button">Save list</button>
+      </section>
+
+      <section>
+        <label class="toggle">
+          <input type="checkbox" id="noRepeat" checked>
+          <span>Don't pick anyone twice until everyone has answered</span>
+        </label>
+      </section>
+
+      <section>
+        <h2 id="answeredTitle">Already answered</h2>
+        <ul class="chips" id="answeredList"></ul>
+        <p class="empty-note" id="answeredEmpty">Nobody yet. Names show up here after they're drawn.</p>
+        <button id="resetBtn" class="ghost" type="button">Put all sticks back</button>
+      </section>
+    </aside>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
